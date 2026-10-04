@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: 12 20 38;
+  --color-primary: 56 189 248;
+  --color-secondary: 226 232 240;
+}
+
+html, body {
+  font-family: 'Space Grotesk', 'Cairo', system-ui, sans-serif;
+}
+
+[dir='rtl'] body, .font-ar {
+  font-family: 'Cairo', 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* RTL mirroring for the few hard-coded directional utilities in use */
+[dir='rtl'] .left-3 { left: auto; right: .75rem; }
+[dir='rtl'] .right-3 { right: auto; left: .75rem; }
+[dir='rtl'] .left-4 { left: auto; right: 1rem; }
+[dir='rtl'] .right-4 { right: auto; left: 1rem; }
+[dir='rtl'] .-right-1 { right: auto; left: -.25rem; }
+[dir='rtl'] .text-left { text-align: right; }
+[dir='rtl'] .text-right { text-align: left; }
+[dir='rtl'] .ml-2 { margin-left: 0; margin-right: .5rem; }
+[dir='rtl'] .tracking-\[\.18em\] { letter-spacing: 0; }
+
+.display {
+  font-family: 'Space Grotesk', 'Cairo', system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+[dir='rtl'] .display {
+  font-family: 'Cairo', 'Space Grotesk', system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+.glow-bg {
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(56, 189, 248, 0.28), transparent 60%),
+    radial-gradient(700px 400px at 95% 0%, rgba(14, 165, 233, 0.18), transparent 60%),
+    rgb(var(--color-bg));
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise .5s cubic-bezier(.2,.7,.3,1) both; }
+
+/* Shimmering placeholder shown while an image loads */
+@keyframes imgShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.img-skeleton {
+  background-image: linear-gradient(
+    100deg,
+    rgb(226 232 240) 20%,
+    rgb(241 245 249) 40%,
+    rgb(226 232 240) 60%
+  );
+  background-size: 200% 100%;
+  animation: imgShimmer 1.4s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .img-skeleton { animation: none; }
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(148,163,184,.35); border-radius: 99px; }
